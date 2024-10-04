@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplicación de Cifrado</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Enlace 'Acerca de' dentro de un contenedor -->
+
+
+    <style>
+  /* Estilo general de la página */
+/* Estilo general de la página */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+/* Contenedor del enlace */
+.link-container {
+    text-align: center; /* Centra el enlace horizontalmente */
+    margin-top: 20px; /* Ajusta el valor para moverlo hacia abajo */
+    margin-bottom: 20px; /* Añade espacio debajo */
+}
+
+/* Estilo del enlace */
+.link-container a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.link-container a:hover {
+    background-color: #0056b3; /* Color al pasar el mouse */
+}
+
+
+/* Contenedor para el enlace en la parte superior derecha */
+.link-top-right {
+    position: absolute;  /* Posición absoluta para poder moverlo libremente */
+    top: 20px;           /* Ajuste para que esté ligeramente debajo del borde superior */
+    right: 20px;         /* Ajuste para colocarlo a la derecha */
+}
+
+/* Estilo del enlace */
+.link-top-right a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.link-top-right a:hover {
+    background-color: #0056b3; /* Cambia el color al pasar el mouse */
+}
+
+
+
+
+
+
+/* Contenedor principal */
+.container {
+    max-width: 1100px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Espacio entre los formularios */
+}
+
+/* Título principal */
+h1 {
+    text-align: center;
+    width: 100%;
+    font-size: 34px;
+    font-weight: 800;
+    color: #007bff;
+    margin-bottom: 30px;
+}
+
+/* Estilo para cada formulario */
+.formulario {
+    width: calc(50% - 20px); /* Ancho del formulario con espacio entre columnas */
+    padding: 20px;
+    background-color: #f1f4f7;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+/* Título de cada formulario */
+.formulario h2 {
+    font-size: 24px;
+    color: #0056b3;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Tabla dentro de cada formulario */
+.form-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #eaeaea;
+}
+
+th {
+    background-color: #007bff;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+/* Estilo de inputs y botones */
+input, select, button {
+    width: calc(100% - 20px);
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+button {
+    background-color: #007bff;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Resultados */
+.result {
+    background-color: #e0f7fa;
+    border: 1px solid #81d4fa;
+    color: #00796b;
+    font-weight: 700;
+    text-align: center;
+    margin-top: 15px;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+/* Ajustes para dispositivos pequeños */
+@media (max-width: 768px) {
+    .container {
+        display: block;
+        padding: 15px;
+    }
+    .formulario {
+        width: 100%; /* Formularios ocupan todo el ancho en pantallas pequeñas */
+        margin-bottom: 20px;
+    }
+    h1 {
+        font-size: 28px;
+    }
+}
+/* Estilo de resultados para el formulario de firma Schnorr */
+#resultadoSchnorr {
+    background-color: #e0f7fa; /* Mismo color de fondo que otros resultados */
+    border: 1px solid #81d4fa;
+    color: #00796b;
+    font-weight: 700;
+    text-align: left; /* Alineación del texto a la izquierda */
+    margin-top: 15px;
+    padding: 15px;
+    border-radius: 8px;
+    word-wrap: break-word; /* Ajuste del texto para evitar desbordamientos */
+    overflow: hidden; /* Ocultar desbordamientos */
+    width: calc(100% - 20px); /* Ajuste de ancho para mantener consistencia */
+}
+
+
+
+    </style>
+
+
+</head>
+<body>
+    <div class="container">
+        <h1>Aplicación de Cifrado</h1>
+        <div class="instructions">
+            <h2>Instrucciones</h2>
+            <p>Selecciona el tipo de cifrado que deseas usar, ingresa el texto y los parámetros adecuados. Puedes cifrar y descifrar textos usando Cifrado César o Escítala, además de otros métodos como Camellia y MD5.</p>
+        </div>
+        <!-- Contenedor del enlace 'Acerca de...' en la parte superior derecha -->
+        <div class="link-top-right">
+            <a href="/acerca.html">Acerca de...</a>
+        </div>
+
+        <!-- Formulario Cifrado César -->
+        <div class="formulario">
+            <h2>Formulario - Cifrado César</h2>
+            <table class="form-table">
+                <tr>
+                    <td>
+                        <label for="cesarText">Texto a cifrar/descifrar (César):</label>
+                        <input type="text" id="cesarText" placeholder="Introduce el texto...">
+                    </td>
+                    <td>
+                        <label for="cesarShift">Desplazamiento:</label>
+                        <input type="number" id="cesarShift" value="3" min="1">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <button onclick="cifrarCesar()">Cifrar con César</button>
+                        <button onclick="descifrarCesar()">Descifrar con César</button>
+                        <div class="result">Resultado: <span id="cesarResult"></span></div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    
+        <!-- Formulario Cifrado Escítala -->
+        <div class="formulario">
+            <h2>Formulario - Cifrado Escítala</h2>
+            <table class="form-table">
+                <tr>
+                    <td>
+                        <label for="escitalaText">Texto a cifrar/descifrar (Escítala):</label>
+                        <input type="text" id="escitalaText" placeholder="Introduce el texto...">
+                    </td>
+                    <td>
+                        <label for="escitalaColumns">Número de columnas:</label>
+                        <input type="number" id="escitalaColumns" value="6" min="1">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <button onclick="cifrarEscitala()">Cifrar con Escítala</button>
+                        <button onclick="descifrarEscitala()">Descifrar con Escítala</button>
+                        <div class="result">Resultado: <span id="escitalaResult"></span></div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    
+        <!-- Formulario Cifrado Camellia -->
+<div class="formulario">
+    <h2>Formulario - Cifrado AES</h2>
+    <table class="form-table">
+        <tr>
+            <td>
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" placeholder="Introduce tu nombre...">
+            </td>
+            <td>
+                <label for="fechaNacimiento">Fecha de Nacimiento:</label>
+                <input type="date" id="fechaNacimiento">
+            </td>
+        </tr>
+        <!-- Campos para introducir datos cifrados para descifrar -->
+        <tr>
+            <td colspan="2">
+                <label for="nombreCifrado">Nombre Cifrado:</label>
+                <input type="text" id="nombreCifrado" placeholder="Introduce el nombre cifrado...">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <label for="fechaCifrada">Fecha de Nacimiento Cifrada:</label>
+                <input type="text" id="fechaCifrada" placeholder="Introduce la fecha cifrada...">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <!-- Botón para cifrar -->
+                <button onclick="cifrarCamellia()">Cifrar Nombre y Fecha de Nacimiento</button>
+                <!-- Botón para descifrar -->
+                <button onclick="descifrarCamellia()">Descifrar Nombre y Fecha de Nacimiento</button>
+                <div class="result" id="resultadoCamellia">Resultado: </div>
+                
+                <button onclick="copiarResultado('resultadoCamellia')">Copiar resultado</button>
+
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div class="formulario">
+    <h2>Formulario - Firma Schnorr</h2>
+    <table class="form-table">
+        <tr>
+            <td>
+                <label for="tarjetaCredito">Tarjeta de Crédito:</label>
+                <input type="text" id="tarjetaCredito" placeholder="Introduce tu número de tarjeta...">
+            </td>
+            <td>
+                <label for="dni">DNI:</label>
+                <input type="text" id="dni" placeholder="Introduce tu DNI...">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <button onclick="firmarSchnorr()">Generar Firma Digital para Tarjeta y DNI</button>
+                <div class="result" id="resultadoSchnorr">Resultado: </div>
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+    
+        <!-- Formulario Hash MD5 -->
+        <div class="formulario">
+            <h2>Formulario - Hash MD5 para Contraseña</h2>
+            <table class="form-table">
+                <tr>
+                    <td colspan="2">
+                        <label for="contrasena">Contraseña:</label>
+                        <input type="password" id="contrasena" placeholder="Introduce tu contraseña...">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <button onclick="generarHashMD5()">Generar Hash MD5 para Contraseña</button>
+                        <div class="result" id="resultadoMD5">Resultado: </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    
+    </div>
+    
+
+<!-- Conectar el script con las funciones -->
+<script src="script.js"></script>
+
+
+</body>
+</html>

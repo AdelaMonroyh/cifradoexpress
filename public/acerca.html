@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acerca de Mí</title>
+    <style>
+        /* Estilo general de la página */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        /* Contenedor principal */
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Título principal */
+        h1 {
+            text-align: center;
+            font-size: 36px;
+            font-weight: 700;
+            color: #e994e3;
+            margin-bottom: 20px;
+        }
+
+        /* Información personal */
+        .info {
+            margin: 20px 0;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .info strong {
+            color: #6f9ecf;
+        }
+
+        /* Imagen */
+        .profile-img {
+            display: block;
+            margin: 0 auto 20px;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Acerca de Mí</h1>
+        <img src="/Imagen/adela.jpg" alt="Mi Foto" class="profile-img">
+        
+        <div class="info">
+            <p><strong>Nombre:</strong> ADELA MONROY HERNANDEZ</p>
+            <p><strong>Carrera:</strong> INGENIERIA EN DESARROLLO DE GESTION DE SOFTWARE</p>
+            <p><strong>Universidad:</strong> UNIVERSIDAD TECNOLOGICA DE LA HUASTECA HIDALGUENSE</p>
+            <p><strong>Cuatrimestre:</strong> SEPTIMO</p>
+            <p><strong>Grupo:</strong> "A"</p>
+        </div>
+    </div>
+    <!-- Sección de comparación de cifrados -->
+<div class="container comparacion-cifrado">
+    <h2 class="titulo-comparacion">Comparación de Cifrados</h2>
+    <div class="comparacion-card">
+        <div class="cifrado-item">
+            <h4>Cifrado Simétrico AES</h4>
+            <p>El cifrado AES (Advanced Encryption Standard) es un algoritmo simétrico ampliamente utilizado para proteger datos. Su clave de cifrado y descifrado es la misma, lo que lo hace rápido y eficiente para grandes cantidades de datos.</p>
+        </div>
+        <div class="cifrado-item">
+            <h4>Firma Digital Schnorr</h4>
+            <p>La firma digital Schnorr se utiliza para validar la autenticidad y la integridad de un mensaje. Es un algoritmo criptográfico asimétrico que utiliza una clave privada para firmar el mensaje y una clave pública para verificarlo.</p>
+        </div>
+        <div class="cifrado-item">
+            <h4>Hash MD5</h4>
+            <p>MD5 (Message Digest Algorithm 5) es un algoritmo hash que produce un resumen de 128 bits. Aunque se considera débil frente a ataques de colisión, sigue siendo útil para verificar la integridad de archivos pequeños.</p>
+        </div>
+    </div>
+</div>
+</body>
+</html>
